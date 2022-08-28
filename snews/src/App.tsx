@@ -8,17 +8,21 @@ import ArrowLeft from './Components/PaginationBar/ArrowLeft';
 import ArrowRight from './Components/PaginationBar/ArrowRight';
 import NextPage from './Components/PaginationBar/NextPage';
 import PreviousPage from './Components/PaginationBar/PreviousPage';
+import Header from './Components/Header/Header';
+import Search from './Components/Header/Search';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [addToPage, setAddToPage] = useState<number>(0);
-  const [newsPerPage] = useState<number>(9);
-  
-  console.log(currentPage);
+  const [newsPerPage] = useState<number>(12);
+  const [inputValue, getInputValue] = useState<string>('');
 
   return (
       <Body>
-        <GridSection skipNews={currentPage * newsPerPage}></GridSection>
+        <Header>
+          <Search getInputValue={getInputValue}></Search>
+        </Header>
+        <GridSection inputValue={inputValue} newsPerPage={newsPerPage} skipNews={currentPage * newsPerPage}></GridSection>
         <PaginationBar>
           <ArrowLeft lastPageList={setAddToPage} addToPage={addToPage} refreshCurrentPage={setCurrentPage} currentPage={currentPage}></ArrowLeft>
           <PreviousPage currentPage={currentPage} previousPage={setCurrentPage} refreshPageList={setAddToPage} divFromPage={addToPage}></PreviousPage>

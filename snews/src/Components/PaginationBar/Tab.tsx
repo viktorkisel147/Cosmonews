@@ -9,7 +9,7 @@ type TabProps = {
 const Tab = ({pageNumber, changeCurrentPage, currentPage}: TabProps) => {
     if (pageNumber == currentPage) {
         return (
-            <button style={{backgroundColor: 'rgb(0, 216, 151)', color: 'white'}} onClick={() => {
+            <button style={{backgroundColor: 'rgb(0, 228, 161)', color: 'white'}} onClick={() => {
                 changeCurrentPage(pageNumber);
             }}>{pageNumber}</button>
         )
