@@ -1,40 +1,37 @@
-import { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
-import Body from './Components/Body/Body';
-import GridSection from './Components/Grid/GridSection';
-import PaginationBar from './Components/PaginationBar/PaginationBar';
-import Tab from './Components/PaginationBar/Tab';
-import ArrowLeft from './Components/PaginationBar/ArrowLeft';
-import ArrowRight from './Components/PaginationBar/ArrowRight';
-import NextPage from './Components/PaginationBar/NextPage';
-import PreviousPage from './Components/PaginationBar/PreviousPage';
-import Header from './Components/Header/Header';
-import Search from './Components/Header/Search';
+import {Home} from "./pages/home/Home";
+import ReactDOM from "react-dom/client";
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+import {Article} from "./pages/atricle/Article";
+import {Login} from "./pages/login/Login";
+import {ErrAuth} from "./pages/errauth/ErrAuth";
+
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [addToPage, setAddToPage] = useState<number>(0);
-  const [newsPerPage] = useState<number>(12);
-  const [inputValue, getInputValue] = useState<string>('');
+
+const [isLogged,setisLogged] = useState<string>('false')
+
+  useEffect(()=>{
+  // let sset = localStorage.getItem('auth')
+  setisLogged(String(localStorage.getItem('auth')));
+
+  },[])
 
   return (
-      <Body>
-        <Header>
-          <Search getInputValue={getInputValue}></Search>
-        </Header>
-        <GridSection inputValue={inputValue} newsPerPage={newsPerPage} skipNews={currentPage * newsPerPage}></GridSection>
-        <PaginationBar>
-          <ArrowLeft lastPageList={setAddToPage} addToPage={addToPage} refreshCurrentPage={setCurrentPage} currentPage={currentPage}></ArrowLeft>
-          <PreviousPage currentPage={currentPage} previousPage={setCurrentPage} refreshPageList={setAddToPage} divFromPage={addToPage}></PreviousPage>
-          <Tab pageNumber={1 + addToPage} changeCurrentPage={setCurrentPage} currentPage={currentPage}></Tab>
-          <Tab pageNumber={2 + addToPage} changeCurrentPage={setCurrentPage} currentPage={currentPage}></Tab>
-          <Tab pageNumber={3 + addToPage} changeCurrentPage={setCurrentPage} currentPage={currentPage}></Tab>
-          <Tab pageNumber={4 + addToPage} changeCurrentPage={setCurrentPage} currentPage={currentPage}></Tab>
-          <Tab pageNumber={5 + addToPage} changeCurrentPage={setCurrentPage} currentPage={currentPage}></Tab>
-          <NextPage currentPage={currentPage} nextPage={setCurrentPage} refreshPageList={setAddToPage} addToPage={addToPage}></NextPage>
-          <ArrowRight nextPageList={setAddToPage} addToPage={addToPage} refreshCurrentPage={setCurrentPage}></ArrowRight>
-        </PaginationBar>
-      </Body>
+<BrowserRouter>
+  <Routes>
+    <Route path="/"  element={<Home />}/>
+    <Route path="/:atricle_id"  element={<Article/>}/>
+    <Route path="/login"  element={<Login/>}/>
+    <Route path="/privatroute"  element={isLogged == 'true'? <Login/>:<ErrAuth/>}/>
+  </Routes>
+</BrowserRouter>
+
     );
 }
 

@@ -4,7 +4,7 @@ header {
     box-sizing: border-box;
     top: 0;
     left: 0;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.710);
     height: 11vh;
     width: 100%;
     z-index: 2;
@@ -22,13 +22,13 @@ header {
 h1 {
     font-family: 'Ubuntu';
     letter-spacing: 2px;
-    color: rgb(187, 255, 0);
+    color: rgb(40,129,129);
 }
 
 .logo {
-    width: 11vh;
-    height: 11vh;
-    background-image: url(../../../public/assets/snews_logo.png);
+    width: 7vh;
+    height: 7vh;
+    background-image: url(../../../public/assets/cosmos3.png);
     background-size: cover;
 }
 
@@ -43,7 +43,7 @@ h1 {
 .search > input {
     background-color: rgb(27, 27, 27);
     border: none;
-    color: white;
+    color: rgba(239, 230, 230, 0.87);
     outline: none;
     padding: 2vh 3vh;
     border-radius: 10px;
@@ -54,7 +54,7 @@ h1 {
 }
 
 .search > input:focus {
-    background-color: rgb(41, 41, 41);
+    background-color: rgb(19, 19, 19);
 }
 
 .search > button {

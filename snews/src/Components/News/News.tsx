@@ -29,7 +29,7 @@ type NewsProps = {
 
 const News = ({ peaceOfNews }: NewsProps) => {
     return(
-        <a className='peace_of_news' href={peaceOfNews.url} target="_blank">
+        <a className='peace_of_news' href={'/'+peaceOfNews.id}>
             <div className='blackout'></div>
             <div>
                 <div className='img' style={{backgroundImage: `url('${peaceOfNews.imageUrl}')`}}></div>
